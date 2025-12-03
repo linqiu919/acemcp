@@ -3,6 +3,7 @@
 import asyncio
 import json
 import toml
+from importlib.metadata import version
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -134,7 +135,12 @@ def create_app() -> FastAPI:
             except Exception:
                 logger.exception("Failed to load projects")
 
-        return {"status": "running", "project_count": project_count, "storage_path": str(config.index_storage_path)}
+        try:
+            app_version = version("acetool")
+        except Exception:
+            app_version = "unknown"
+
+        return {"status": "running", "project_count": project_count, "storage_path": str(config.index_storage_path), "version": app_version}
 
     @app.get("/api/tools")
     async def list_tools() -> dict:

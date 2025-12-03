@@ -11,7 +11,10 @@
     <div x-data="mcpManager()" x-init="init()" class="container mx-auto p-6">
         <header class="bg-white shadow rounded-lg p-6 mb-6 flex justify-between items-center">
             <div>
-                <h1 class="text-3xl font-bold text-gray-800" x-text="t('title')"></h1>
+                <div class="flex items-center gap-3">
+                    <h1 class="text-3xl font-bold text-gray-800" x-text="t('title')"></h1>
+                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded" x-text="'v' + status.version"></span>
+                </div>
                 <p class="text-gray-600 mt-2" x-text="t('subtitle')"></p>
             </div>
             <div class="flex gap-2">
@@ -270,7 +273,8 @@
                 status: {
                     status: 'loading',
                     project_count: 0,
-                    storage_path: ''
+                    storage_path: '',
+                    version: ''
                 },
                 config: {},
                 editConfig: {},
