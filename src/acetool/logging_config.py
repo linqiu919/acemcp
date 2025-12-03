@@ -1,4 +1,4 @@
-"""Global logging configuration for acemcp."""
+"""Global logging configuration for acetool."""
 
 import logging
 from pathlib import Path
@@ -39,7 +39,7 @@ class InterceptHandler(logging.Handler):
 def setup_logging(intercept_stdlib: bool = False) -> None:
     """Setup global logging configuration with file rotation.
 
-    Configures loguru to write logs to ~/.acemcp/log/acemcp.log with:
+    Configures loguru to write logs to ~/.acetool/log/acetool.log with:
     - Maximum file size: 5MB
     - Maximum number of files: 10 (rotation)
     - Log format with timestamp, level, and message
@@ -56,8 +56,8 @@ def setup_logging(intercept_stdlib: bool = False) -> None:
         return
 
     # Define log directory and file
-    log_dir = Path.home() / ".acemcp" / "log"
-    log_file = log_dir / "acemcp.log"
+    log_dir = Path.home() / ".acetool" / "log"
+    log_file = log_dir / "acetool.log"
 
     # Create log directory if it doesn't exist
     log_dir.mkdir(parents=True, exist_ok=True)

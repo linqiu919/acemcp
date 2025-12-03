@@ -1,6 +1,6 @@
 [project]
-name = "acemcp"
-version = "0.1.5"
+name = "acetool"
+version = "0.0.5"
 description = "MCP server for codebase indexing and semantic search with multi-encoding support and .gitignore integration"
 readme = "README.md"
 authors = [
@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [project.scripts]
-acemcp = "acemcp:run"
+acetool = "acetool:run"
 
 [build-system]
 requires = ["uv_build>=0.9.0,<0.10.0"]

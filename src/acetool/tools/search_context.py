@@ -4,8 +4,8 @@ from typing import Any
 
 from loguru import logger
 
-from acemcp.config import get_config
-from acemcp.index import IndexManager
+from acetool.config import get_config
+from acetool.index import IndexManager
 
 
 async def search_context_tool(arguments: dict[str, Any]) -> dict[str, Any]:

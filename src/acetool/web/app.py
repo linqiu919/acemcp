@@ -11,8 +11,8 @@ from fastapi.staticfiles import StaticFiles
 from loguru import logger
 from pydantic import BaseModel
 
-from acemcp.config import get_config
-from acemcp.web.log_handler import get_log_broadcaster
+from acetool.config import get_config
+from acetool.web.log_handler import get_log_broadcaster
 
 # Initialize log broadcaster at module level to ensure single instance
 log_broadcaster = get_log_broadcaster()
@@ -42,7 +42,7 @@ def create_app() -> FastAPI:
     Returns:
         FastAPI application instance
     """
-    app = FastAPI(title="Acemcp Management", description="MCP Server Management Interface", version="0.1.0")
+    app = FastAPI(title="Acetool Management", description="MCP Server Management Interface", version="0.1.0")
 
     static_dir = Path(__file__).parent / "static"
     if static_dir.exists():
@@ -54,7 +54,7 @@ def create_app() -> FastAPI:
         html_file = Path(__file__).parent / "templates" / "index.html"
         if html_file.exists():
             return html_file.read_text(encoding="utf-8")
-        return "<h1>Acemcp Management</h1><p>Template not found</p>"
+        return "<h1>Acetool Management</h1><p>Template not found</p>"
 
     @app.get("/api/config")
     async def get_config_api() -> dict:
@@ -82,7 +82,7 @@ def create_app() -> FastAPI:
             Updated configuration
         """
         try:
-            from acemcp.config import USER_CONFIG_FILE
+            from acetool.config import USER_CONFIG_FILE
 
             if not USER_CONFIG_FILE.exists():
                 msg = "User configuration file not found"
@@ -168,7 +168,7 @@ def create_app() -> FastAPI:
             Tool execution result
         """
         try:
-            from acemcp.tools import search_context_tool
+            from acetool.tools import search_context_tool
 
             tool_name = tool_request.tool_name
             arguments = tool_request.arguments

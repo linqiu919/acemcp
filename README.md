@@ -1,11 +1,11 @@
 简体中文 | [English](./README_EN.md)
 
-# Acemcp
+# Acetool
 
-代码库索引和语义搜索的 MCP 服务器。
+更适合中国宝宝体质的，代码库索引和语义搜索的 MCP 服务器。
 
-<a href="https://glama.ai/mcp/servers/@qy527145/acemcp">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@qy527145/acemcp/badge" alt="Acemcp MCP server" />
+<a href="https://glama.ai/mcp/servers/@qy527145/acetool">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@qy527145/acetool/badge" alt="Acetool MCP server" />
 </a>
 
 ## 安装
@@ -14,31 +14,31 @@
 
 ```bash
 # 安装到系统
-uv tool install acemcp
+uv tool install acetool
 
 # 或临时运行（无需安装）
-uvx acemcp
+uvx acetool
 ```
 
 ### 开发安装
 
 ```bash
 # 克隆仓库
-git clone https://github.com/qy527145/acemcp.git
-cd acemcp
+git clone https://github.com/qy527145/acetool.git
+cd acetool
 
 # 安装依赖
 uv sync
 
 # 运行
-uv run acemcp
+uv run acetool
 ```
 
 ## 配置
 
-配置文件会在首次运行时自动创建在 `~/.acemcp/settings.toml`，包含默认值。
+配置文件会在首次运行时自动创建在 `~/.acetool/settings.toml`，包含默认值。
 
-编辑 `~/.acemcp/settings.toml` 进行配置：
+编辑 `~/.acetool/settings.toml` 进行配置：
 ```toml
 BATCH_SIZE = 10
 MAX_LINES_PER_BLOB = 800
@@ -59,7 +59,7 @@ EXCLUDE_PATTERNS = [".venv", "node_modules", ".git", "__pycache__", "*.pyc", ...
 您还可以通过以下方式配置：
 - **命令行参数**（最高优先级）：`--base-url`、`--token`
 - **Web 管理界面**（更新用户配置文件）
-- **环境变量**（使用 `ACEMCP_` 前缀）
+- **环境变量**（使用 `ACETOOL_` 前缀）
 
 ## MCP 配置
 
@@ -70,10 +70,10 @@ EXCLUDE_PATTERNS = [".venv", "node_modules", ".git", "__pycache__", "*.pyc", ...
 ```json
 {
   "mcpServers": {
-    "acemcp": {
+    "acetool": {
       "command": "uvx",
       "args": [
-        "acemcp"
+        "acetool"
       ]
     }
   }
@@ -93,10 +93,10 @@ EXCLUDE_PATTERNS = [".venv", "node_modules", ".git", "__pycache__", "*.pyc", ...
 ```json
 {
   "mcpServers": {
-    "acemcp": {
+    "acetool": {
       "command": "uvx",
       "args": [
-        "acemcp",
+        "acetool",
         "--web-port",
         "8888"
       ]
@@ -232,7 +232,7 @@ pip-log.txt, pip-delete-this-directory.txt, .coverage, htmlcov,
 
 ### 多编码文件支持
 
-Acemcp 自动检测和处理不同字符编码的文件，适用于国际化项目：
+Acetool 自动检测和处理不同字符编码的文件，适用于国际化项目：
 
 - **自动检测**：按顺序尝试多种编码：UTF-8 → GBK → GB2312 → Latin-1
 - **回退处理**：如果所有编码都失败，使用 UTF-8 错误处理以防止崩溃
@@ -246,7 +246,7 @@ Acemcp 自动检测和处理不同字符编码的文件，适用于国际化项�
 
 ### .gitignore 集成
 
-Acemcp 自动遵守您项目的 `.gitignore` 文件：
+Acetool 自动遵守您项目的 `.gitignore` 文件：
 
 - **自动加载**：如果存在，从项目根目录读取 `.gitignore`
 - **标准语法**：支持 Git 的标准 wildmatch 模式
@@ -288,14 +288,14 @@ build/
 
 ## 数据存储
 
-- **配置**：`~/.acemcp/settings.toml`
-- **已索引项目**：`~/.acemcp/data/projects.json`（固定位置）
-- **日志文件**：`~/.acemcp/log/acemcp.log`（自动轮转）
+- **配置**：`~/.acetool/settings.toml`
+- **已索引项目**：`~/.acetool/data/projects.json`（固定位置）
+- **日志文件**：`~/.acetool/log/acetool.log`（自动轮转）
 - 项目通过其绝对路径识别（使用正斜杠规范化）
 
 ## 日志记录
 
-应用程序自动记录日志到 `~/.acemcp/log/acemcp.log`，具有以下特性：
+应用程序自动记录日志到 `~/.acetool/log/acetool.log`，具有以下特性：
 
 - **控制台输出**：INFO 级别及以上（彩色输出）
 - **文件输出**：DEBUG 级别及以上（详细格式，包含模块、函数和行号）
@@ -306,7 +306,7 @@ build/
 
 **日志格式：**
 ```
-2025-11-06 13:51:25 | INFO     | acemcp.server:main:103 - Starting acemcp MCP server...
+2025-11-06 13:51:25 | INFO     | acetool.server:main:103 - Starting acetool MCP server...
 ```
 
 日志文件在首次运行时自动创建，无需手动配置。
@@ -345,7 +345,7 @@ Web 管理界面提供：
 **技术细节：**
 - 实现了 `InterceptHandler` 类来拦截标准库 logging
 - 配置 uvicorn 使用 `log_config=None` 禁用默认日志
-- 所有日志统一输出到 `~/.acemcp/log/acemcp.log`
+- 所有日志统一输出到 `~/.acetool/log/acetool.log`
 
 ### 版本 0.1.4
 

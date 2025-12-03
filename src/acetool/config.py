@@ -1,4 +1,4 @@
-"""Configuration management for acemcp MCP server."""
+"""Configuration management for acetool MCP server."""
 
 import toml
 from pathlib import Path
@@ -78,7 +78,7 @@ DEFAULT_CONFIG = {
 }
 
 # User configuration and data paths
-USER_CONFIG_DIR = Path.home() / ".acemcp"
+USER_CONFIG_DIR = Path.home() / ".acetool"
 USER_CONFIG_FILE = USER_CONFIG_DIR / "settings.toml"
 USER_DATA_DIR = USER_CONFIG_DIR / "data"
 
@@ -109,7 +109,7 @@ def _ensure_user_config() -> Path:
 _ensure_user_config()
 
 settings = Dynaconf(
-    envvar_prefix="ACEMCP",
+    envvar_prefix="ACETOOL",
     settings_files=[str(USER_CONFIG_FILE)],
     load_dotenv=True,
     merge_enabled=True,

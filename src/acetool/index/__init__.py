@@ -1,6 +1,6 @@
 """Index management module."""
 
-from acemcp.index.manager import IndexManager
+from acetool.index.manager import IndexManager
 
 __all__ = ["IndexManager"]
 

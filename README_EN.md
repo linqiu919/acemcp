@@ -1,11 +1,11 @@
 [简体中文](./README.md) | English
 
-# Acemcp
+# Acetool
 
 MCP server for codebase indexing and semantic search.
 
-<a href="https://glama.ai/mcp/servers/@qy527145/acemcp">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@qy527145/acemcp/badge" alt="Acemcp MCP server" />
+<a href="https://glama.ai/mcp/servers/@qy527145/acetool">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@qy527145/acetool/badge" alt="Acetool MCP server" />
 </a>
 
 ## Installation
@@ -14,31 +14,31 @@ MCP server for codebase indexing and semantic search.
 
 ```bash
 # Install to system
-uv tool install acemcp
+uv tool install acetool
 
 # Or run temporarily (no installation required)
-uvx acemcp
+uvx acetool
 ```
 
 ### Development Installation
 
 ```bash
 # Clone repository
-git clone https://github.com/qy527145/acemcp.git
-cd acemcp
+git clone https://github.com/qy527145/acetool.git
+cd acetool
 
 # Install dependencies
 uv sync
 
 # Run
-uv run acemcp
+uv run acetool
 ```
 
 ## Configuration
 
-The configuration file is automatically created at `~/.acemcp/settings.toml` on first run with default values.
+The configuration file is automatically created at `~/.acetool/settings.toml` on first run with default values.
 
-Edit `~/.acemcp/settings.toml` to configure:
+Edit `~/.acetool/settings.toml` to configure:
 ```toml
 BATCH_SIZE = 10
 MAX_LINES_PER_BLOB = 800
@@ -59,7 +59,7 @@ EXCLUDE_PATTERNS = [".venv", "node_modules", ".git", "__pycache__", "*.pyc", ...
 You can also configure via:
 - **Command line arguments** (highest priority): `--base-url`, `--token`
 - **Web management interface** (updates user config file)
-- **Environment variables** with `ACEMCP_` prefix
+- **Environment variables** with `ACETOOL_` prefix
 
 ## MCP Configuration
 
@@ -70,10 +70,10 @@ Add the following to your MCP client configuration (e.g., Claude Desktop):
 ```json
 {
   "mcpServers": {
-    "acemcp": {
+    "acetool": {
       "command": "uvx",
       "args": [
-        "acemcp"
+        "acetool"
       ]
     }
   }
@@ -93,10 +93,10 @@ To enable the web management interface, add the `--web-port` argument:
 ```json
 {
   "mcpServers": {
-    "acemcp": {
+    "acetool": {
       "command": "uvx",
       "args": [
-        "acemcp",
+        "acetool",
         "--web-port",
         "8888"
       ]
@@ -232,7 +232,7 @@ Patterns support wildcards (`*`, `?`) and match against directory/file names or 
 
 ### Multi-Encoding File Support
 
-Acemcp automatically detects and handles files with different character encodings, making it suitable for international projects:
+Acetool automatically detects and handles files with different character encodings, making it suitable for international projects:
 
 - **Automatic Detection**: Tries multiple encodings in order: UTF-8 → GBK → GB2312 → Latin-1
 - **Fallback Handling**: If all encodings fail, uses UTF-8 with error handling to prevent crashes
@@ -246,7 +246,7 @@ This is particularly useful for:
 
 ### .gitignore Integration
 
-Acemcp automatically respects your project's `.gitignore` file:
+Acetool automatically respects your project's `.gitignore` file:
 
 - **Automatic Loading**: Reads `.gitignore` from project root if it exists
 - **Standard Syntax**: Supports Git's standard wildmatch patterns
@@ -288,14 +288,14 @@ All these patterns will be automatically respected during indexing, in addition 
 
 ## Data Storage
 
-- **Configuration**: `~/.acemcp/settings.toml`
-- **Indexed projects**: `~/.acemcp/data/projects.json` (fixed location)
-- **Log files**: `~/.acemcp/log/acemcp.log` (with automatic rotation)
+- **Configuration**: `~/.acetool/settings.toml`
+- **Indexed projects**: `~/.acetool/data/projects.json` (fixed location)
+- **Log files**: `~/.acetool/log/acetool.log` (with automatic rotation)
 - Projects are identified by their absolute path (normalized with forward slashes)
 
 ## Logging
 
-The application automatically logs to `~/.acemcp/log/acemcp.log` with the following features:
+The application automatically logs to `~/.acetool/log/acetool.log` with the following features:
 
 - **Console output**: INFO level and above (colored output)
 - **File output**: DEBUG level and above (detailed format with module, function, and line number)
@@ -306,7 +306,7 @@ The application automatically logs to `~/.acemcp/log/acemcp.log` with the follow
 
 **Log format:**
 ```
-2025-11-06 13:51:25 | INFO     | acemcp.server:main:103 - Starting acemcp MCP server...
+2025-11-06 13:51:25 | INFO     | acetool.server:main:103 - Starting acetool MCP server...
 ```
 
 The log files are automatically created on first run and require no manual configuration.
@@ -345,7 +345,7 @@ To enable the web interface, use the `--web-port` argument when starting the ser
 **Technical Details:**
 - Implemented `InterceptHandler` class to intercept standard library logging
 - Configured uvicorn with `log_config=None` to disable default logging
-- All logs unified to output to `~/.acemcp/log/acemcp.log`
+- All logs unified to output to `~/.acetool/log/acetool.log`
 
 ### Version 0.1.4
 
